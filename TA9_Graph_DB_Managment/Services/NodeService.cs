@@ -1,15 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TA9_Graph_DB_Managment.Shaphes;
 using TA9_Graph_DB_Managment.SharedDb;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using System.ComponentModel.DataAnnotations;
 
 namespace TA9_Graph_DB_Managment.Services
 {

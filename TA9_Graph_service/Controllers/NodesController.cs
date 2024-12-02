@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TA9_Graph_DB_Managment.Services;
 using TA9_Graph_DB_Managment.Shaphes;
-using TA9_Graph_DB_Managment;
-using System.Xml.Linq;
 using TA9_Graph_service.ShapesData;
 using Swashbuckle.AspNetCore.Annotations;
 

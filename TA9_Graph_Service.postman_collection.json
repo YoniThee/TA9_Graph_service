@@ -1,0 +1,2406 @@
+{
+	"info": {
+		"_postman_id": "f57cf168-4fe0-4c1a-be0f-21406912d907",
+		"name": "TA9_Graph_Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40037950"
+	},
+	"item": [
+		{
+			"name": "Happy_Path_Create_2Nodes_And_Edge",
+			"item": [
+				{
+					"name": "0. Create First Node",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"const nodeId = jsonData.nodeId;\r",
+									"pm.environment.set(\"firstNodeId\", nodeId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": 222\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1. Create Second Node",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"const nodeId = jsonData.nodeId;\r",
+									"pm.environment.set(\"secondNodeId\", nodeId);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": 111\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. Get First Node",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Node Created Successfully\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes/{{firstNodeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes",
+								"{{firstNodeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. Get Second Node",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Node Created Successfully\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes/{{secondNodeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes",
+								"{{secondNodeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4. Get All Nodes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Get initial node count\", () => {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.environment.set(\"initialNodeCount\", jsonData.length);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5. Create Edge between nodes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"const edgeId = jsonData.edgeId;\r",
+									"pm.environment.set(\"firstEdgeId\", edgeId);\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"node1_id\": \"{{firstNodeId}}\",\r\n  \"node2_id\": \"{{secondNodeId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Edges",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Edges"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6. Get first Edge",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Edge Created Successfully\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Edges/{{firstEdgeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Edges",
+								"{{firstEdgeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7. Get All Edges",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Get initial edges count\", () => {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.environment.set(\"initialEdgeCount\", jsonData.length);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Edges",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Edges"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8. Delete first Edge",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Edges/{{firstEdgeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Edges",
+								"{{firstEdgeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "9. Get All Edges",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Edges count decreased\", () => {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    const currentCount = jsonData.length;\r",
+									"    pm.expect(currentCount).to.be.equal(pm.environment.get(\"initialEdgeCount\") - 1);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Edges",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Edges"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "10. Delete first Node",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes/{{firstNodeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes",
+								"{{firstNodeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "11. Delete second Node",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes/{{secondNodeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes",
+								"{{secondNodeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "12. Get All Nodes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Node count decreased\", () => {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    const currentCount = jsonData.length;\r",
+									"    pm.expect(currentCount).to.be.equal(pm.environment.get(\"initialNodeCount\") - 2);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Happy_Path_Update_Values",
+			"item": [
+				{
+					"name": "0. Create First Node",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"const nodeId = jsonData.nodeId;\r",
+									"pm.environment.set(\"firstNodeId\", nodeId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": 222\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1. Create Second Node",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"const nodeId = jsonData.nodeId;\r",
+									"pm.environment.set(\"secondNodeId\", nodeId);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": 111\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. Get First Node",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Node Created Successfully\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes/{{firstNodeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes",
+								"{{firstNodeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. Get Second Node",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Node Created Successfully\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"const data = jsonData.data;\r",
+									"pm.test(\"initalize data value is : 111\", () => {\r",
+									"    pm.expect(111).to.be.equal(data);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes/{{secondNodeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes",
+								"{{secondNodeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4. Update Second Node Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": 12345\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes/{{secondNodeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes",
+								"{{secondNodeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5. Get Second Node",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"const data = jsonData.data;\r",
+									"pm.test(\"current data value is : 12345\", () => {\r",
+									"    pm.expect(12345).to.be.equal(data);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes/{{secondNodeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes",
+								"{{secondNodeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6. Create Edge between nodes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"const edgeId = jsonData.edgeId;\r",
+									"pm.environment.set(\"firstEdgeId\", edgeId);\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"node1_id\": \"{{firstNodeId}}\",\r\n  \"node2_id\": \"{{secondNodeId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Edges",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Edges"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7. Get first Edge",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Edge Created Successfully\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"const nodeId_2 = jsonData.node2_id;\r",
+									"\r",
+									"pm.environment.set(\"initalizeNode2_inEdge\", nodeId_2);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Edges/{{firstEdgeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Edges",
+								"{{firstEdgeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8. Create Third Node",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"const nodeId = jsonData.nodeId;\r",
+									"pm.environment.set(\"thirdNodeId\", nodeId);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": 111\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "9. Update Edge between another nodes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"const edgeId = jsonData.edgeId;\r",
+									"pm.environment.set(\"firstEdgeId\", edgeId);\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"node1_id\": \"{{firstNodeId}}\",\r\n  \"node2_id\": \"{{thirdNodeId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Edges/{{firstEdgeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Edges",
+								"{{firstEdgeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "10. Get first Edge after change",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"const nodeId_2 = jsonData.node2_id;\r",
+									"pm.test(\"node2 had changed\", () => {\r",
+									"    pm.expect(nodeId_2).to.be.not.equal(pm.environment.get(\"initalizeNode2_inEdge\"));\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Edges/{{firstEdgeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Edges",
+								"{{firstEdgeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "11. Delete first Edge",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Edges/{{firstEdgeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Edges",
+								"{{firstEdgeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "12. Delete first Node",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes/{{firstNodeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes",
+								"{{firstNodeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "13. Delete second Node",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes/{{secondNodeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes",
+								"{{secondNodeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "14. Delete third Node",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes/{{thirdNodeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes",
+								"{{thirdNodeId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Add_And_Remove_Neighbor_By_Remove_Edge",
+			"item": [
+				{
+					"name": "0. Create First Node",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"const nodeId = jsonData.nodeId;\r",
+									"pm.environment.set(\"firstNodeId\", nodeId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": 222\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1. Create Second Node",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"const nodeId = jsonData.nodeId;\r",
+									"pm.environment.set(\"secondNodeId\", nodeId);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": 111\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. Get First Node",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Node Created Successfully\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No neigbors is exist\", () => {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(jsonData.neighbors.length).to.be.equal(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes/{{firstNodeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes",
+								"{{firstNodeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. Get Second Node",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Node Created Successfully\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No neigbors is exist\", () => {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(jsonData.neighbors.length).to.be.equal(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes/{{secondNodeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes",
+								"{{secondNodeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4. Get All Nodes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Get initial node count\", () => {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.environment.set(\"initialNodeCount\", jsonData.length);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5. Create Edge between nodes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"const edgeId = jsonData.edgeId;\r",
+									"pm.environment.set(\"firstEdgeId\", edgeId);\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"node1_id\": \"{{firstNodeId}}\",\r\n  \"node2_id\": \"{{secondNodeId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Edges",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Edges"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6. Get First Node with neighbor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Node Created Successfully\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Neighbor was added\", () => {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(jsonData.neighbors.length).to.be.equal(1);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes/{{firstNodeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes",
+								"{{firstNodeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7. Get Second Node with neighbor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Node Created Successfully\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Neighbor was added\", () => {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(jsonData.neighbors.length).to.be.equal(1);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes/{{secondNodeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes",
+								"{{secondNodeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8. Get first Edge",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Edge Created Successfully\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Edges/{{firstEdgeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Edges",
+								"{{firstEdgeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "9. Delete first Edge",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Edges/{{firstEdgeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Edges",
+								"{{firstEdgeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "10. Get First Node After Edge Removed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Node Created Successfully\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Neighbor was removed\", () => {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(jsonData.neighbors.length).to.be.equal(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes/{{firstNodeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes",
+								"{{firstNodeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "11. Get Second Node After Edge Removed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Node Created Successfully\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Neighbor was removed\", () => {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(jsonData.neighbors.length).to.be.equal(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes/{{secondNodeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes",
+								"{{secondNodeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "12. Delete first Node",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes/{{firstNodeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes",
+								"{{firstNodeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "13. Delete second Node",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes/{{secondNodeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes",
+								"{{secondNodeId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Add_And_Remove_Neighbor_By_Remove_Node",
+			"item": [
+				{
+					"name": "0. Create First Node",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"const nodeId = jsonData.nodeId;\r",
+									"pm.environment.set(\"firstNodeId\", nodeId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": 222\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1. Create Second Node",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"const nodeId = jsonData.nodeId;\r",
+									"pm.environment.set(\"secondNodeId\", nodeId);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": 111\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. Get First Node",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Node Created Successfully\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No neigbors is exist\", () => {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(jsonData.neighbors.length).to.be.equal(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes/{{firstNodeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes",
+								"{{firstNodeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. Get Second Node",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Node Created Successfully\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No neigbors is exist\", () => {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(jsonData.neighbors.length).to.be.equal(0);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes/{{secondNodeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes",
+								"{{secondNodeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4. Get All Nodes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Get initial node count\", () => {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.environment.set(\"initialNodeCount\", jsonData.length);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5. Create Edge between nodes 1-2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"const edgeId = jsonData.edgeId;\r",
+									"pm.environment.set(\"firstEdgeId\", edgeId);\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"node1_id\": \"{{firstNodeId}}\",\r\n  \"node2_id\": \"{{secondNodeId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44339/Edges",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44339",
+							"path": [
+								"Edges"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6. Create Third Node",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"const nodeId = jsonData.nodeId;\r",
+									"pm.environment.set(\"thirdNodeId\", nodeId);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": 789\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7. Create Edge between nodes 1-3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"const edgeId = jsonData.edgeId;\r",
+									"pm.environment.set(\"secondEdgeId\", edgeId);\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"node1_id\": \"{{firstNodeId}}\",\r\n  \"node2_id\": \"{{thirdNodeId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Edges",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Edges"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8. Get First Node with neighbor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Node Created Successfully\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Neighbor was added\", () => {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(jsonData.neighbors.length).to.be.equal(2);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes/{{firstNodeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes",
+								"{{firstNodeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "9. Delete second Node",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes/{{secondNodeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes",
+								"{{secondNodeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "11. Get First Node After one Neighbor removed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Node Created Successfully\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Neighbor was removed\", () => {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(jsonData.neighbors.length).to.be.equal(1);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes/{{firstNodeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes",
+								"{{firstNodeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "12. Failed to Get first Edge - Removed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Edge dosent exist\", () => {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Edges/{{firstEdgeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Edges",
+								"{{firstEdgeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "13. Get Second Edge",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200 Ok\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Edges/{{secondEdgeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Edges",
+								"{{secondEdgeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "14. Delete Second Edge",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Edges/{{secondEdgeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Edges",
+								"{{secondEdgeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "15. Delete First Node",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes/{{firstNodeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes",
+								"{{firstNodeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "16. Delete Third Node",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GraphService_URL}}/Nodes/{{thirdNodeId}}",
+							"host": [
+								"{{GraphService_URL}}"
+							],
+							"path": [
+								"Nodes",
+								"{{thirdNodeId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"pm.environment.set(\"GraphService_URL\", \"https://localhost:44339\");\r",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
