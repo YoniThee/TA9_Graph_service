@@ -1,0 +1,6 @@
+@TA9_Graph_service_HostAddress = http://localhost:5052
+
+GET {{TA9_Graph_service_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
