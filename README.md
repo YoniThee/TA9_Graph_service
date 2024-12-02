@@ -46,3 +46,6 @@ each edge must to be connectd to 2 nodes.
 The Update function reffer to node is uodate the data that the node contain and refer to edge is uodating the nodes that this edge is connect between
 
 Each request (Post/Delete/Update) is effect the relevant nodes and edges
+
+### Use this App
+Postman collection is attached to this repo for better understanding of the logic and the functionality of the service
